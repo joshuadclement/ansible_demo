@@ -1,0 +1,14 @@
+- name: Make sure /tmp/ansible exists
+  ansible.builtin.file:
+    owner: root
+    group: wheel
+    path: /tmp/ansible
+    state: directory
+
+- name: Create example config file from the template
+  ansible.builtin.template:
+    owner: root
+    group: wheel
+    mode: 0755
+    dest: /tmp/ansible/example.conf
+    src: "{{ role_path }}/templates/example.conf.j2"
